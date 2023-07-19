@@ -45,7 +45,13 @@ class StartFromOverSampling extends TaintTracking::Configuration {
         node2 = call and 
         node1 = call.getArg(_)
       )
+      or
+        exists(Assign a |
+          a.getATarget() = node2.asExpr() and
+          a.getValue() = node1.asExpr()
+        )  
     }
+}
 
       
 
