@@ -31,12 +31,18 @@
  
        }
  
-     override predicate isSink(DataFlow::Node sink) {
-       exists(DataFlow::CallCfgNode call |
-         isSklearnModelSelectionFunction(call.getFunction().asExpr().(Name).getId()) and
-         sink = call
-       )
-     }
+       override predicate isSink(DataFlow::Node sink) {
+        exists(DataFlow::CallCfgNode call |
+            (
+                call.getFunction().(DataFlow::AttrRead).getObject().getALocalSource() = 
+                    API::moduleImport("sklearn").getMember("model_selection").getAMember().getReturn().getAUse()
+                or
+                isSklearnModelSelectionFunction(call.getFunction().asExpr().(Name).getId())
+            ) 
+            and 
+            sink = call
+        )
+    }
  
      
  
