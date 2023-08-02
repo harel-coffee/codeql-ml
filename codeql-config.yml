@@ -2,3 +2,5 @@ name: "My custom CodeQL config"
 
 queries:
   - uses: ./leakage.ql
+  - uses: codeql/no-op  # No operations, effectively disabling built-in queries
+
