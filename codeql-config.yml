@@ -1,7 +1,4 @@
 name: "My custom CodeQL config"
 
-paths-ignore:
-  - '*'
-
 queries:
   - uses: ./leakage.ql
