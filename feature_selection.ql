@@ -1,5 +1,5 @@
 /**
- * @name Leakage Example
+ * @name feature_selection Leakage Example
  * @description This query detects potential train-test leakage in your code.
  * @kind path-problem
  * @problem.severity warning
