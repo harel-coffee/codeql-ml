@@ -1,5 +1,5 @@
 /**
- * @name over_sampling Leakage Example
+ * @name over_sampling Leakage Potential
  * @description This query detects potential train-test leakage in your code.
  * @kind path-problem
  * @problem.severity warning
