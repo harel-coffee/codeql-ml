@@ -40,18 +40,6 @@ class StartFromOverSampling extends TaintTracking::TaintTracking {
             sink = call
         )
     }
-
-    override predicate isAdditionalTaintStep(DataFlow::Node node1, DataFlow::Node node2) {
-        exists(DataFlow::CallCfgNode call | 
-            node2 = call and 
-            node1 = call.getArg(_)
-        )
-        or
-        exists(Assign a |
-            a.getATarget() = node2.asExpr() and
-            a.getValue() = node1.asExpr()
-        )
-    }
 }
 
 from DataFlow::PathElement source, DataFlow::PathElement sink, StartFromOverSampling config
