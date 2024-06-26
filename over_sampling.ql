@@ -27,19 +27,6 @@ class StartFromOverSampling extends TaintTracking::TaintTracking {
     private predicate isSklearnModelSelectionFunction(string funcName) {
         funcName in ["GroupKFold", "GroupShuffleSplit", "KFold", "LeaveOneGroupOut", "LeavePGroupsOut", "LeaveOneOut", "LeavePOut", "PredefinedSplit", "RepeatedKFold", "RepeatedStratifiedKFold", "ShuffleSplit", "StratifiedKFold", "StratifiedShuffleSplit", "StratifiedGroupKFold", "TimeSeriesSplit", "check_cv", "train_test_split", "GridSearchCV", "HalvingGridSearchCV", "ParameterGrid", "ParameterSampler", "RandomizedSearchCV", "HalvingRandomSearchCV", "cross_validate", "cross_val_predict", "cross_val_score", "learning_curve", "permutation_test_score", "validation_curve", "LearningCurveDisplay", "ValidationCurveDisplay"]
     }
-
-    override predicate isSink(DataFlow::Node sink) {
-        exists(DataFlow::CallCfgNode call |
-            (
-                call.getFunction().(DataFlow::AttrRead).getObject().getALocalSource() = 
-                    API::moduleImport("sklearn").getMember("model_selection").getAMember().getReturn().getAUse()
-                or
-                isSklearnModelSelectionFunction(call.getFunction().asExpr().(Name).getId())
-            ) 
-            and 
-            sink = call
-        )
-    }
 }
 
 from DataFlow::PathElement source, DataFlow::PathElement sink, StartFromOverSampling config
