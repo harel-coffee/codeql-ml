@@ -13,7 +13,7 @@ import semmle.python.ApiGraphs
 import semmle.python.dataflow.new.DataFlow
 import DataFlow::PathGraph
 
-class StartFromOverSampling extends TaintTracking::Configuration {
+class StartFromOverSampling extends TaintTracking::TaintTracking {
     StartFromOverSampling() { this = "StartFromOverSampling" }
 
     override predicate isSource(DataFlow::Node source) {
