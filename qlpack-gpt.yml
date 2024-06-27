@@ -1,4 +1,4 @@
 name: codeql-queries
 version: 0.0.1
 dependencies:
-  codeql/python-all: 1.0.1
+  codeql/python-all: 0.0.1
