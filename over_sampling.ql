@@ -21,7 +21,7 @@
      override predicate isSource(DataFlow::Node source) {
        exists(DataFlow::CallCfgNode call |
            call.getFunction().(DataFlow::AttrRead).getObject().getALocalSource() = 
-           API::moduleImport("imblearn").getMember("over_sampling").getAMember().getReturn().getAUse() and
+           API::moduleImport("imblearn").getMember("over_sampling").getAMember().getReturn().getAValueReachableFromSource() and
            source = call
        )
      }
@@ -35,7 +35,7 @@
         exists(DataFlow::CallCfgNode call |
             (
                 call.getFunction().(DataFlow::AttrRead).getObject().getALocalSource() = 
-                    API::moduleImport("sklearn").getMember("model_selection").getAMember().getReturn().getAUse()
+                    API::moduleImport("sklearn").getMember("model_selection").getAMember().getReturn().getAValueReachableFromSource()
                 or
                 isSklearnModelSelectionFunction(call.getFunction().asExpr().(Name).getId())
             ) 
